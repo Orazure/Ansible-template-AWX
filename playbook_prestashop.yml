@@ -1,0 +1,15 @@
+- name: Installer PrestaShop via PHP CLI
+  hosts: all
+  become: yes
+
+  vars:
+    db_server: "database-1.cuunbkfggjer.us-east-1.rds.amazonaws.com"
+    db_user: "admin"
+    db_password: "password"
+    prefix: "myshop"
+    email: "test@test.com"
+    password: "password"
+
+  tasks:
+    - name: Installer PrestaShop via le CLI PHP
+      command: "php /var/www/prestashop/install/index_cli.php --domain={{ domain }} --db_server={{ db_server }} --db_user={{ db_user }} --db_password={{ db_password }} --prefix={{ prefix }} --email={{ email }} --password={{ password }}"
