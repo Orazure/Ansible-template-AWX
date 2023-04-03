@@ -12,4 +12,4 @@
 
   tasks:
     - name: Installer PrestaShop via le CLI PHP
-      command: "php /var/www/prestashop/install/index_cli.php --domain={{ domain }} --db_server={{ db_server }} --db_user={{ db_user }} --db_password={{ db_password }} --prefix={{ prefix }} --email={{ email }} --password={{ password }}"
+      command: "php /var/www/prestashop/install/index_cli.php --db_server={{ db_server }} --db_user={{ db_user }} --db_password={{ db_password }} --prefix={{ prefix }} --email={{ email }} --password={{ password }}"
