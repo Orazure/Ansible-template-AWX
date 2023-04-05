@@ -3,7 +3,7 @@
   become: yes
 
   vars:
-    domain: "54.167.236.133"
+    domain: "3.92.196.237"
     db_server: "database-1.cuunbkfggjer.us-east-1.rds.amazonaws.com"
     db_user: "admin"
     db_password: "password"
