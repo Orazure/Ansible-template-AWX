@@ -13,7 +13,7 @@
 
   tasks:
     - name: Installer PrestaShop via le CLI PHP
-      command: "php /var/www/html/prestashop/install/index_cli.php --domain={{domain}} --db_server={{ db_server }} --db_user={{ db_user }} --db_password={{ db_password }} --prefix={{ prefix }} --email={{ email }} --password={{ password }} --db_create=1 --rewrite=0"
+      command: "php /var/www/html/prestashop/install/index_cli.php --domain={{domain}} --db_server={{ db_server }} --db_user={{ db_user }} --db_password={{ db_password }} --prefix={{ prefix }} --email={{ email }} --password={{ password }} --db_create=1"
 
     - name: Supprimer le dossier /install de PrestaShop
       file:
