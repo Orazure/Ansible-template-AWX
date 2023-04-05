@@ -3,7 +3,7 @@
   become: yes
 
   vars:
-    domain: "54.163.140.161"
+    domain: "54.167.236.133"
     db_server: "database-1.cuunbkfggjer.us-east-1.rds.amazonaws.com"
     db_user: "admin"
     db_password: "password"
@@ -13,7 +13,7 @@
 
   tasks:
     - name: Installer PrestaShop via le CLI PHP
-      command: "php /var/www/html/prestashop/install/index_cli.php --db_server={{ db_server }} --db_user={{ db_user }} --db_password={{ db_password }} --prefix={{ prefix }} --email={{ email }} --password={{ password }} --db_create=1 --rewrite=0"
+      command: "php /var/www/html/prestashop/install/index_cli.php --domain={{domain}} --db_server={{ db_server }} --db_user={{ db_user }} --db_password={{ db_password }} --prefix={{ prefix }} --email={{ email }} --password={{ password }} --db_create=1 -rewrite=0 --base_uri=/prestashop/"
 
     - name: Supprimer le dossier /install de PrestaShop
       file:
