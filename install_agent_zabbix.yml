@@ -1,0 +1,30 @@
+---
+- name: Install Zabbix Agent
+  hosts: all
+  become: yes
+  vars:
+    zabbix_server:
+
+  tasks:
+    - name: Installer le paquet zabbix-agent
+      yum:
+        name: zabbix-agent
+        state: present
+      become: true
+
+    - name: Modifier la configuration de l'agent Zabbix
+      lineinfile:
+        path: /etc/zabbix/zabbix_agentd.conf
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+        state: present
+      with_items:
+        - { regexp: '^Hostname=.*', line: 'Hostname={{ inventory_hostname }}' }
+        - { regexp: '^Server=.*', line: 'Server={{ zabbix_server }}' }
+
+    - name: Démarrer et activer le service zabbix-agent
+      service:
+        name: zabbix-agent
+        state: started
+        enabled: true
+      become: true
