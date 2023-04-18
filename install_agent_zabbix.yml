@@ -7,7 +7,7 @@
 
   tasks:
     - name: Installer le paquet zabbix-agent
-      yum:
+      apt:
         name: zabbix-agent
         state: present
       become: true
