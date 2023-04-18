@@ -3,10 +3,19 @@
   become: yes
 
   tasks:
+
+    - name: Vérifier si le dossier d'installation existe
+      stat:
+        path: "/var/www/html/prestashop/install"
+      register: install_dir
+
+
     - name: Installer PrestaShop via le CLI PHP
       command: "php /var/www/html/prestashop/install/index_cli.php --domain={{domain}} --db_server={{ db_server }} --db_user={{ db_user }} --db_password={{ db_password }} --prefix={{ prefix }} --email={{ email }} --password={{ password }} --db_create=1 --rewrite=0 --base_uri=/prestashop/"
+      when: install_dir.stat.exists
 
     - name: Supprimer le dossier /install de PrestaShop
       file:
         path: "/var/www/html/prestashop/install"
         state: absent
+      when: install_dir.stat.exists
