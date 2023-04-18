@@ -21,7 +21,7 @@
       with_items:
         - { regexp: '^Hostname=.*', line: 'Hostname={{ inventory_hostname }}' }
         - { regexp: '^Server=.*', line: 'Server={{ zabbix_server }}' }
-        - { regexp: '^ServerActive=.*', line: 'ServerActive={{ zabbix_server_active }}' }
+        - { regexp: '^ServerActive=.*', line: 'ServerActive={{ zabbix_server }}' }
 
     - name: Démarrer et activer le service zabbix-agent
       service:
