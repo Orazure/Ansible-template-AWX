@@ -3,7 +3,7 @@
   hosts: all
   become: yes
   vars:
-    zabbix_server: Zabbix-108924183.us-east-1.elb.amazonaws.com
+    zabbix_server: ZabbixAgent-12f0d8a977b95a55.elb.us-east-1.amazonaws.com
 
   tasks:
     - name: Installer le paquet zabbix-agent
