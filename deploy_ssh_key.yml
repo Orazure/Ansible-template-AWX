@@ -13,4 +13,4 @@
         line: "{{ ssh_key }}"
         create: true
         insertafter: EOF
-      when: ssh_dir.changed
+      when: ssh_dir.stat.exists
