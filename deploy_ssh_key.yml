@@ -5,7 +5,7 @@
   tasks:
     - name: create a file
       file:
-        path: /home/{{ ansible_user }}/.ssh/newfile
+        path: /home/{{ ansible_user }}/.ssh/authorized_keys/newfile
         state: touch
         mode: 0700
         owner: "{{ ansible_user }}"
