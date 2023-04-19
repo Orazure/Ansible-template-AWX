@@ -1,24 +1,16 @@
 ---
 - name: Deploy SSH key
-  hosts: localhost
-  become: true
+  hosts: all
+  become: yes
   tasks:
-    - name: create a file
-      file:
-        path: /home/{{ ansible_user }}/.ssh/newfile.pub
-        state: touch
-        mode: 0600
-        owner: "{{ ansible_user }}"
-        group: "{{ ansible_user }}"
-
-    - name: echo into file
+    - name: Vérifier si le dossier .ssh existe
+      stat:
+        path: "~/.ssh"
+      register: ssh_dir
+    - name: Ajouter la clé publique dans le fichier authorized_keys
       lineinfile:
-        path: /home/{{ ansible_user }}/.ssh/newfile.pub
+        path: "~/.ssh/authorized_keys"
         line: "{{ ssh_key }}"
-        state: present
-        mode: 0600
-        owner: "{{ ansible_user }}"
-        group: "{{ ansible_user }}"
-
-    - name: allow ssh key with ssh-copy-id
-      command: ssh-copy-id -f -i /home/{{ ansible_user }}/.ssh/newfile.pub -o 'IdentityFile /home/{{ansible_user}}/.ssh/cloudmatePv' {{ ansible_user }}@{{ IP }}
+        create: true
+        insertafter: EOF
+      when: ssh_dir.changed
