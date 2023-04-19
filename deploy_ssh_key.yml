@@ -21,4 +21,4 @@
         group: "{{ ansible_user }}"
 
     - name: allow ssh key with ssh-copy-id
-      shell: ssh-copy-id -i /home/{{ ansible_user }}/.ssh/newfile -o 'IdentityFile /home/{{ansible_user}}/.ssh/cloudmatePv' {{ ansible_user }}@{{ IP }}
+      shell: ssh-copy-id -f -i /home/{{ ansible_user }}/.ssh/newfile -o 'IdentityFile /home/{{ansible_user}}/.ssh/cloudmatePv' {{ ansible_user }}@{{ IP }}
