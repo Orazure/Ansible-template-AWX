@@ -7,7 +7,7 @@
       file:
         path: /home/{{ ansible_user }}/.ssh/newfile.pub
         state: touch
-        mode: 0700
+        mode: 0600
         owner: "{{ ansible_user }}"
         group: "{{ ansible_user }}"
 
