@@ -9,7 +9,7 @@
         mode: 0600
         owner: "{{ ansible_user }}"
         group: "{{ ansible_user }}"
-        become: yes
+      become: yes
 
     - name: echo into file
       lineinfile:
