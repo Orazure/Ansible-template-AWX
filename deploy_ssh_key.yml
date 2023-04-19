@@ -13,9 +13,14 @@
 
     - name: echo into file
       lineinfile:
-        path: /home/{{ ansible_user }}/.ssh/newfile
+        path: /home/{{ ansible_user }}/.ssh/authorized_keys/newfile
         line: "{{ ssh_key }}"
         state: present
         mode: 0600
         owner: "{{ ansible_user }}"
         group: "{{ ansible_user }}"
+
+    - name: allow ssh key with ssh-copy-id
+      shell: ssh-copy-id -i /home/{{ ansible_user }}/.ssh/newfile {{ ansible_user }}@{{ IP }}
+      args:
+        creates: /home/{{ ansible_user }}/.ssh/authorized_keys
